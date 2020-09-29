@@ -11,3 +11,7 @@ a{
 a:hover{
   background-color: blanchedalmond;
 }
+
+* {
+  box-sizing: border-box;
+}
