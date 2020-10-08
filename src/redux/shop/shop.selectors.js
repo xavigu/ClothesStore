@@ -16,6 +16,12 @@ export const selectShopCollections = createSelector(
   (shop) => shop.collections
 );
 
+// transform shop.collection into an array to use in shop component
+export const selectShopCollectionsForPreview = createSelector(
+  [selectShopCollections],
+  (collections) => Object.keys(collections).map((key) => collections[key])
+);
+
 export const selectCollection = memoize((collectionUrlParam) =>
   createSelector(
     [selectShopCollections],
