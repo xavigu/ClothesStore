@@ -41,6 +41,20 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
   return userRef;
 };
 
+// Transform array of query objects into an object to use in the app with the right properties
+export const convertCollectionsSnapshotToMap = (collections) => {
+  const transformedCollection = collections.docs.map((doc) => {
+    const { title, items } = doc.data();
+    return {
+      id: doc.id,
+      routeName: encodeURI(title.toLowerCase()),
+      title,
+      items,
+    };
+  });
+  console.log(transformedCollection);
+};
+
 // Function to add a collection in Firebase passin a string collectionKey, and the array of objects to add
 export const addCollectionsAndDocuments = async (
   collectionKey,
