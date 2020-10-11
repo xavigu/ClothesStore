@@ -18,13 +18,13 @@ import { selectCurrentUser } from './redux/user/user.selectors';
 
 class App extends React.Component {
   // method to unsubscribe
-  unsubcribeFromAuth = null;
+  unsubscribeFromAuth = null;
 
   // onAuthStateChanged gives back a function that when we call close the subscription
   componentDidMount() {
     const { setCurrentUser } = this.props;
 
-    this.unsubcribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
+    this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
       if (userAuth) {
         const userRef = await createUserProfileDocument(userAuth);
         // check data in database of that userRef
@@ -41,7 +41,7 @@ class App extends React.Component {
   }
 
   componentWillUnmount() {
-    this.unsubcribeFromAuth();
+    this.unsubscribeFromAuth();
   }
 
   render() {
