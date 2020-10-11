@@ -52,7 +52,11 @@ export const convertCollectionsSnapshotToMap = (collections) => {
       items,
     };
   });
-  console.log(transformedCollection);
+  // transform the array of objects into an object of objects with a key
+  return transformedCollection.reduce((accumulator, collection) => {
+    accumulator[collection.routeName] = collection;
+    return accumulator;
+  }, {});
 };
 
 // Function to add a collection in Firebase passin a string collectionKey, and the array of objects to add
