@@ -41,6 +41,7 @@ class App extends React.Component {
   }
 
   componentWillUnmount() {
+    // stop listening from auth.onAuthStateChanged
     this.unsubscribeFromAuth();
   }
 
