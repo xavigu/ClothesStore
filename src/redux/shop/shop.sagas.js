@@ -18,7 +18,8 @@ export function* fetchCollectionsAsync() {
   try {
     const collectionRef = firestore.collection('collections');
     const snapshot = yield collectionRef.get();
-    // call effect is a method that first parameter is a function and the second parameter is the parameter that you are going to use in that function
+    // call effect is a method that first parameter is a function and
+    // the second parameter is the parameter that you are going to use in that function
     const collectionsMap = yield call(
       convertCollectionsSnapshotToMap,
       snapshot
@@ -31,6 +32,7 @@ export function* fetchCollectionsAsync() {
 }
 
 export function* fetchCollectionsStart() {
+  // takeEvery effect execute all the actions/functions passing by parameters at the same time
   yield takeEvery(
     ShopActionTypes.FETCH_COLLECTIONS_START,
     fetchCollectionsAsync
