@@ -1,5 +1,5 @@
 // takeEvery is used to dont block all the actions inside it
-import { call, put, takeEvery } from 'redux-saga/effects';
+import { call, put, takeLatest } from 'redux-saga/effects';
 
 import {
   firestore,
@@ -33,7 +33,8 @@ export function* fetchCollectionsAsync() {
 
 export function* fetchCollectionsStart() {
   // takeEvery effect execute all the actions/functions passing by parameters at the same time
-  yield takeEvery(
+  // takeLatest effect because we want the API call one time (fetchCollectionsAsync)
+  yield takeLatest(
     ShopActionTypes.FETCH_COLLECTIONS_START,
     fetchCollectionsAsync
   );
