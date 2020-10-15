@@ -6,12 +6,7 @@ import {
   googleProvider,
 } from '../../firebase/firebase.utils';
 
-import {
-  emailSignInFailure,
-  emailSignInSuccess,
-  googleSignInFailure,
-  googleSignInSuccess,
-} from './user.actions';
+import { signInFailure, signInSuccess } from './user.actions';
 
 import UserActionTypes from './user.types';
 
@@ -19,36 +14,31 @@ export function* signInWithGoogle() {
   // every API call needs go into try-catch block to catch the error
   try {
     const { user } = yield auth.signInWithPopup(googleProvider);
-    console.log('user with google popup: ', user);
-    // create user object to storage into the database
-    const userRef = yield call(createUserProfileDocument, user);
-    // get user snapshot from firebase
-    const userSnapshot = yield userRef.get();
-    //put(), puts things back into our regular Redux flow
-    yield put(
-      // update the currentUser state with the userReducer
-      googleSignInSuccess({ id: userSnapshot.id, ...userSnapshot.data() })
-    );
+    yield getSnapshotFromUserAuth(user);
   } catch (error) {
-    yield put(googleSignInFailure(error));
+    yield put(signInFailure(error));
   }
 }
 
 export function* signInWithEmail({ payload: { email, password } }) {
   try {
     const { user } = yield auth.signInWithEmailAndPassword(email, password);
-    console.log('user email: ', user);
-    // create user object to storage into the database
-    const userRef = yield call(createUserProfileDocument, user);
+    yield getSnapshotFromUserAuth(user);
+  } catch (error) {
+    yield put(signInFailure(error));
+  }
+}
+
+export function* getSnapshotFromUserAuth(userAuth) {
+  try {
+    const userRef = yield call(createUserProfileDocument, userAuth);
     // get user snapshot from firebase
     const userSnapshot = yield userRef.get();
-    //put(), puts things back into our regular Redux flow
-    yield put(
-      // update the currentUser state with the userReducer
-      emailSignInSuccess({ id: userSnapshot.id, ...userSnapshot.data() })
-    );
+    // put(), puts things back into our regular Redux flow
+    // update the currentUser state with the userReducer
+    yield put(signInSuccess({ id: userSnapshot.id, ...userSnapshot.data() }));
   } catch (error) {
-    yield put(emailSignInFailure(error));
+    yield put(signInFailure(error));
   }
 }
 
