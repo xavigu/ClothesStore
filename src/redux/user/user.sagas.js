@@ -7,7 +7,12 @@ import {
   googleProvider,
 } from '../../firebase/firebase.utils';
 
-import { signInFailure, signInSuccess } from './user.actions';
+import {
+  signInFailure,
+  signInSuccess,
+  signOutFailure,
+  signOutSuccess,
+} from './user.actions';
 
 import UserActionTypes from './user.types';
 
@@ -53,6 +58,17 @@ export function* isUserAuthenticated() {
   }
 }
 
+export function* signOut() {
+  try {
+    yield auth.signOut();
+    yield put(signOutSuccess());
+  } catch (error) {
+    yield put(signOutFailure(error));
+  }
+}
+
+//Functions that call another generator function if occurs an action
+
 export function* onGoogleSignInStart() {
   yield takeLatest(UserActionTypes.GOOGLE_SIGN_IN_START, signInWithGoogle);
 }
@@ -60,6 +76,10 @@ export function* onGoogleSignInStart() {
 export function* onEmailSignInStart() {
   // the function signInWithEmail, get the payload from EMAIL_SIGN_IN_START action
   yield takeLatest(UserActionTypes.EMAIL_SIGN_IN_START, signInWithEmail);
+}
+
+export function* onSignOutStart() {
+  yield takeLatest(UserActionTypes.SIGN_OUT_START, signOut);
 }
 
 export function* onCheckUserSession() {
@@ -71,5 +91,6 @@ export function* userSagas() {
     call(onGoogleSignInStart),
     call(onEmailSignInStart),
     call(onCheckUserSession),
+    call(onSignOutStart),
   ]);
 }
