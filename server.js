@@ -3,7 +3,7 @@ const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 // calculate in which path you are, dont matter where are you workingkkkkkk
-const path = require("body-parser");
+const path = require("path");
 
 // load the .env into the process enviroment of the server allowing access to secret key
 if (process.env.NODE_ENV !== "production") {
