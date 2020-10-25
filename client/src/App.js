@@ -3,7 +3,7 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
-import './App.css';
+import { GlobalStyle } from './global.styles';
 
 import Header from './components/header/header.component';
 import SignPage from './pages/sign/sign.component';
@@ -14,6 +14,7 @@ import CheckoutPage from './pages/checkout/checkout.component';
 import { selectCurrentUser } from './redux/user/user.selectors';
 import { checkUserSession } from './redux/user/user.actions';
 
+
 const App = ({ checkUserSession, currentUser }) => {
   // only fires the action again if the value that return checkUserSession changes
   useEffect(() => {
@@ -22,6 +23,7 @@ const App = ({ checkUserSession, currentUser }) => {
 
   return (
     <div>
+      <GlobalStyle />
       <Header />
       <Switch>
         <Route exact path="/" component={HomePage} />
