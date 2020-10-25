@@ -1,7 +1,5 @@
 import React from 'react';
 
-import CustomButton from '../custom-button/custom-button.component';
-
 import "./cart-item.styles.scss";
 
 const CartItem = ({ item: {imageUrl, price, name, quantity}}) => (

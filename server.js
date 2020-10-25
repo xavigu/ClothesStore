@@ -6,9 +6,8 @@ const bodyParser = require("body-parser");
 const path = require("path");
 
 // load the .env into the process enviroment of the server allowing access to secret key
-if (process.env.NODE_ENV !== "production") {
-  require("dotenv").config();
-}
+if (process.env.NODE_ENV !== "production") require("dotenv").config();
+
 
 // bring stripe library function
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
