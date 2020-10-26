@@ -22,7 +22,7 @@ class ErrorBoundary extends React.Component {
      return (
        <ErrorImageOverlay>
          <ErrorImageContainer imageUrl='https://i.imgur.com/A040Lxr.png'/>
-         <ErrorImageText>Sorry, this page is lost in space right now</ErrorImageText>
+         <ErrorImageText>Sorry, this page is lost in space right now. Try again later!</ErrorImageText>
        </ErrorImageOverlay>
      )
    }
