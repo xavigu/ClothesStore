@@ -4,6 +4,7 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 // calculate in which path you are, dont matter where are you workingkkkkkk
 const path = require("path");
+const compression = require("compression");
 
 // load the .env into the process enviroment of the server allowing access to secret key
 if (process.env.NODE_ENV !== "production") require("dotenv").config();
@@ -17,6 +18,8 @@ const app = express();
 // server port
 const port = process.env.PORT || 5000;
 
+// compression all the files to store less space
+app.use(compression());
 // parser to json all the body parser that we get
 app.use(bodyParser.json());
 // urlencoded to parse to correct url without symbols that cant handle
