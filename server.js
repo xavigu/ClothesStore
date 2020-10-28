@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
 // calculate in which path you are, dont matter where are you workingkkkkkk
 const path = require("path");
 const compression = require("compression");
+const enforce = require("express-sslify");
 
 // load the .env into the process enviroment of the server allowing access to secret key
 if (process.env.NODE_ENV !== "production") require("dotenv").config();
@@ -30,6 +31,7 @@ app.use(cors());
 
 //if production, serve all static files in a build (__dirname is part of Node.js and is going to point to client/build)
 if (process.env.NODE_ENV === "production") {
+  app.use(enforce.HTTPS({ trustProtoHeader: true }));
   app.use(express.static(path.join(__dirname, "client/build")));
   // any url that the user/client hits, pass this function as a response
   app.get("*", function (req, res) {
@@ -43,6 +45,11 @@ app.listen(port, (error) => {
   if (error) throw error;
   // log to see all is correct
   console.log("Server running on port " + port);
+});
+
+// always app make a get request to service-worker we send the file
+app.get('./service-worker.js', (req, res) => {
+  res.sendFile(path.resolve(__dirname, "..", "build", "service-worker.js"));
 });
 
 // function that fires when the client make a post request to the route /payment
