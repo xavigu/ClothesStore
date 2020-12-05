@@ -1,0 +1,23 @@
+.contact-page {
+  display: flex;
+  flex-direction: column;
+  background: rgba(240, 214, 166, 0.301);
+  border: rgba(128, 128, 128, 0.349) 1px solid;
+  font-size: 16px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 20px 15px 40px;
+
+  .title {
+    font-size: 38px;
+    margin: 0 auto 30px;
+  }
+
+  .description {
+    margin: 16px 0;
+  }
+
+  .contact-items {
+    border: rgba(128, 128, 128, 0.26) 1px solid;
+    padding: 8px;
+  }
+}
