@@ -15,16 +15,18 @@ const ContactPage = () =>
   return (
     <div className="contact-page">
       <h2 className='title'>{literals.CONTACT_TITLE}</h2>
-      <div className="description">
-        {literals.CONTACT_DESCRIPTION}
-      </div>
-      <div className="contact-items">
-        <p>{literals.CONTACT_ITEMS_SUBTITLE}</p> 
-        {
-          contactItems.map((item) => (
-            <ContactLogo logo={item} />
-          ))
-        }
+      <div className="contact-content">
+        <div className="description">
+          {literals.CONTACT_DESCRIPTION}
+        </div>
+        <div className="contact-items">
+          <p>{literals.CONTACT_ITEMS_SUBTITLE}</p> 
+          {
+            contactItems.map((item) => (
+              <ContactLogo logo={item} />
+            ))
+          }
+        </div>
       </div>
     </div>
  )

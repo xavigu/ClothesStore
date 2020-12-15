@@ -3,6 +3,7 @@ import React from "react";
 import {ReactComponent as LinkedinLogo} from './../../assets/social/linkedin.svg';
 import {ReactComponent as GmailLogo} from './../../assets/social/gmail.svg';
 import {ReactComponent as GithubLogo} from './../../assets/social/github.svg';
+import './contact-logo.styles.scss';
 
 const ContactLogo = ({logo}) => {
   return (
