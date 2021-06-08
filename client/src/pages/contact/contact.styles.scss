@@ -26,4 +26,52 @@
     }
   }
 
+  .contact-triangles,
+  .contact-subtitle{
+    vertical-align: middle;
+    display: inline-block;
+  }
+
+}
+
+
+// svg triangles css animations
+:root{
+  --dark-color: #635BFF;
+  --light-color: #43C4ED;
+}
+
+svg {
+  cursor: pointer;
+}
+
+#darkGroup {
+  fill: var(--dark-color);
+}
+
+#lightGroup {
+  fill: var(--light-color);
+}
+
+#dark1,
+#light1,
+#dark2 {
+  transition: all 1s ease;
+}
+
+#dark2 {
+  transform: translateX(-100%);
+}
+
+svg:hover #light1{
+  transform: translateX(20%);
+}
+
+svg:hover #dark1{
+  transform: translateX(40%);
+  opacity: 0;
+}
+
+svg:hover #dark2{
+  transform: translateX(0%);
 }
