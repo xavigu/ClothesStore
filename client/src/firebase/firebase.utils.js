@@ -59,7 +59,7 @@ export const convertCollectionsSnapshotToMap = (collections) => {
   }, {});
 };
 
-// Function to add a collection in Firebase passin a string collectionKey, and the array of objects to add
+// Function to add a collection in Firebase passing a string collectionKey, and the array of objects to add
 export const addCollectionsAndDocuments = async (
   collectionKey,
   objectsToAdd
