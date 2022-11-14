@@ -21,7 +21,7 @@
     "express": "^4.16.4",
     "express-sslify": "^1.2.0",
     "stripe": "6.28.0",
-    "react-scripts": "3.4.1",
+    "react-scripts": "5.0.1",
     "node-sass": "^4.14.1"
   },
   "devDependencies": {
