@@ -62,3 +62,4 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/ad
 ### Deployment
 
 To deploy your github repository to netlify hosting you only need push to master branch
+
